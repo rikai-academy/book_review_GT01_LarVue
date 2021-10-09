@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -45,30 +45,30 @@ class User extends Authenticatable
     ];
 
     public function user_follow(){
-        return this->hasMany(Follow::class,'user_id');
+        return $this->hasMany(Follow::class,'user_id');
     }
 
     public function user_are_follow(){
-        return this->hasMany(Follow::class,'follow_id');
+        return $this->hasMany(Follow::class,'follow_id');
     }
 
     public function activities(){
-        return this->hasMany(Activity::class,'user_id');
+        return $this->hasMany(Activity::class,'user_id');
     }
 
     public function like_review(){
-        return this->hasMany(Like_Review::class,'user_id');
+        return $this->hasMany(Like_Review::class,'user_id');
     }
 
     public function reviews(){
-        return this->hasMany(Review::class,'user_id');
+        return $this->hasMany(Review::class,'user_id');
     }
 
     public function comments(){
-        return this->hasMany(Comment::class,'user_id');
+        return $this->hasMany(Comment::class,'user_id');
     }
 
     public function like_comment(){
-        return this->hasMany(Like_Comment::class,'user_id');
+        return $this->hasMany(Like_Comment::class,'user_id');
     }
 }
