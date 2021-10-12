@@ -4,11 +4,19 @@
       <option value="en">EN</option>
       <option value="vn">VN</option>
     </select>
-    <router-view />
+    <component :is="layout">
+      <router-view />
+    </component>
   </div>
 </template>
 
 <script>
+// import * as custom from './assets/admin/js/custom'
+// import * as sweeta from './assets/admin/js/sweetalert'
+// import * as progressbar from './assets/admin/js/progressbar.min.js'
+// import * as popper from './assets/admin/js/popper.min.js'
+// import * as niceSelect from './assets/admin/js/jquery.nice-select.min.js'
+// import * as jquery from './assets/admin/js/jquery.min.js'
 export default {
   name: 'App',
   data () {
@@ -27,13 +35,32 @@ export default {
       }
       this.language = localStorage.getItem('lang')
     }
-  }
+  },
+  computed: {
+    layout () {
+      var default_layout = 'default'
+      return (this.$route.meta.layout || default_layout) + 'layout'
+    }
+  },
+  // components: {
+  //   custom,
+  //   sweeta,
+  //   progressbar,
+  //   popper,
+  //   niceSelect,
+  //   jquery
+
+  // }
 }
 </script>
 
 <style>
+@import './assets/admin/css/animate.min.css';
+@import './assets/admin/css/bootstrap.min.css';
+@import './assets/admin/css/nice-select.css';
+@import './assets/admin/css/style.css';
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
